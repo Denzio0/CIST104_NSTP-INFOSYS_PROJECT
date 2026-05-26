@@ -1,0 +1,14 @@
+CREATE TABLE performance (
+    entry_id     INT           NOT NULL AUTO_INCREMENT,
+    student_id   INT           NOT NULL,
+    drill_name   VARCHAR(100)  NOT NULL,
+    drill_date   DATE          NOT NULL,
+    rating       ENUM('Excellent','Proficient','Satisfactory',
+                      'Needs_Improvement','Unsatisfactory') NOT NULL,
+    remarks      TEXT          NULL,
+    officer_name VARCHAR(100)  NULL,
+    PRIMARY KEY (entry_id),
+    CONSTRAINT fk_perf_student
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

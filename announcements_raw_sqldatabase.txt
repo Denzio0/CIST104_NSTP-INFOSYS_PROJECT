@@ -1,0 +1,15 @@
+CREATE TABLE announcements (
+    announcement_id INT           NOT NULL AUTO_INCREMENT,
+    title           VARCHAR(200)  NOT NULL,
+    body            TEXT          NOT NULL,
+    audience        ENUM('All','CWTS','ROTC') NOT NULL DEFAULT 'All',
+    priority        ENUM('Normal','Important','Urgent') NOT NULL DEFAULT 'Normal',
+    posted_date     DATETIME      NOT NULL DEFAULT NOW(),
+    posted_by       INT           NULL,
+    is_pinned       TINYINT(1)    NOT NULL DEFAULT 0,
+    PRIMARY KEY (announcement_id),
+    KEY idx_ann_pinned (is_pinned, posted_date),
+    CONSTRAINT fk_ann_user
+        FOREIGN KEY (posted_by) REFERENCES users(user_id)
+        ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

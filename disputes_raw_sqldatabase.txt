@@ -1,0 +1,17 @@
+CREATE TABLE disputes (
+    dispute_id       INT     NOT NULL AUTO_INCREMENT,
+    student_id       INT     NOT NULL,
+    record_id        INT     NOT NULL,
+    reason           TEXT    NOT NULL,
+    requested_status ENUM('Present','Excused','Late') NOT NULL,
+    submitted_date   DATE    NOT NULL,
+    status           ENUM('Pending','Approved','Rejected') NOT NULL DEFAULT 'Pending',
+    admin_response   TEXT    NULL,
+    PRIMARY KEY (dispute_id),
+    CONSTRAINT fk_disp_student
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_disp_record
+        FOREIGN KEY (record_id) REFERENCES attendance(record_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

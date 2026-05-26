@@ -1,0 +1,17 @@
+CREATE TABLE points (
+    transaction_id   INT     NOT NULL AUTO_INCREMENT,
+    student_id       INT     NOT NULL,
+    amount           INT     NOT NULL CHECK (amount > 0),
+    type             ENUM('award','deduct') NOT NULL,
+    reason           TEXT    NOT NULL,
+    transaction_date DATE    NOT NULL,
+    admin_id         INT     NULL,
+    PRIMARY KEY (transaction_id),
+    KEY idx_points_student (student_id),
+    CONSTRAINT fk_pts_student
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_pts_admin
+        FOREIGN KEY (admin_id) REFERENCES users(user_id)
+        ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

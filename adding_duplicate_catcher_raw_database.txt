@@ -1,0 +1,8 @@
+ALTER TABLE notifications
+ADD created_only DATE GENERATED ALWAYS AS (DATE(created_date)) STORED;
+
+ALTER TABLE notifications
+ADD UNIQUE KEY uq_notif_student_type_date (student_id, type, created_only);
+
+ALTER TABLE calendar_events
+ADD UNIQUE KEY uq_event_title_date (title, event_date, program_type);

@@ -1,0 +1,8 @@
+INSERT INTO users (username, password_hash, role, student_id, is_active) VALUES
+    ('jgbaterbonia2025',   SHA2('Student@2026', 256), 'CWTS_Student', 1, 1),
+    ('ircapulong2025',    SHA2('Student@2026', 256), 'CWTS_Student', 2, 1),
+    ('mrfamero2025', SHA2('Student@2026', 256), 'CWTS_Student', 3, 1),
+    ('mkdeleon2025',    SHA2('Student@2026', 256), 'CWTS_Student', 4, 1),
+    ('esalazar2025', SHA2('Student@2026', 256), 'CWTS_Student', 5, 1),
+    ('gktinoko2025',  SHA2('Student@2026', 256), 'ROTC_Student', 6, 1),
+    ('javallite2025',   SHA2('Student@2026', 256), 'ROTC_Student', 7, 1);

@@ -1,0 +1,15 @@
+CREATE TABLE engagement (
+    activity_id    INT             NOT NULL AUTO_INCREMENT,
+    student_id     INT             NOT NULL,
+    activity_name  VARCHAR(150)    NOT NULL,
+    activity_date  DATE            NOT NULL,
+    location       VARCHAR(150)    NULL,
+    category       VARCHAR(80)     NULL,
+    hours_rendered DECIMAL(5,2)    NOT NULL
+                   CHECK (hours_rendered > 0 AND hours_rendered <= 24),
+    verified       TINYINT(1)      NOT NULL DEFAULT 0,
+    PRIMARY KEY (activity_id),
+    CONSTRAINT fk_eng_student
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

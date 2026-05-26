@@ -1,0 +1,14 @@
+CREATE TABLE users (
+    user_id       INT            NOT NULL AUTO_INCREMENT,
+    username      VARCHAR(100)   NOT NULL,
+    password_hash VARCHAR(255)   NOT NULL,
+    role          ENUM('Admin','CWTS_Student','ROTC_Student','ROTC_Senior') NOT NULL,
+    student_id    INT            NULL,
+    is_active     TINYINT(1)     NOT NULL DEFAULT 1,
+    last_login    DATETIME       NULL,
+    PRIMARY KEY (user_id),
+    UNIQUE KEY uq_username (username),
+    CONSTRAINT fk_users_student
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

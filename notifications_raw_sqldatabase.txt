@@ -1,0 +1,13 @@
+CREATE TABLE notifications (
+    notif_id     INT           NOT NULL AUTO_INCREMENT,
+    student_id   INT           NOT NULL,
+    type         VARCHAR(80)   NOT NULL,
+    message      TEXT          NOT NULL,
+    created_date DATETIME      NOT NULL DEFAULT NOW(),
+    is_read      TINYINT(1)    NOT NULL DEFAULT 0,
+    PRIMARY KEY (notif_id),
+    KEY idx_notif_read (is_read),
+    CONSTRAINT fk_notif_student
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

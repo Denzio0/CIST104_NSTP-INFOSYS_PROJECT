@@ -1,0 +1,13 @@
+CREATE TABLE demerits (
+    demerit_id   INT           NOT NULL AUTO_INCREMENT,
+    student_id   INT           NOT NULL,
+    reason       VARCHAR(200)  NOT NULL,
+    severity     ENUM('Minor','Moderate','Major') NOT NULL,
+    notes        TEXT          NULL,
+    officer_name VARCHAR(100)  NULL,
+    demerit_date DATE          NOT NULL,
+    status       ENUM('Active','Appealed','Dismissed') NOT NULL DEFAULT 'Active',
+    PRIMARY KEY (demerit_id),
+    CONSTRAINT fk_dem_student
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE CASCADE ON UPDATE CASCADE

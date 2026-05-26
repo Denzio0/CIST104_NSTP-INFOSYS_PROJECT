@@ -1,0 +1,14 @@
+CREATE TABLE feedback (
+    feedback_id    INT           NOT NULL AUTO_INCREMENT,
+    student_id     INT           NOT NULL,
+    submitted_date DATETIME      NOT NULL DEFAULT NOW(),
+    type           VARCHAR(80)   NOT NULL,
+    subject        VARCHAR(200)  NOT NULL,
+    body           TEXT          NOT NULL,
+    status         ENUM('Open','Resolved') NOT NULL DEFAULT 'Open',
+    admin_response TEXT          NULL,
+    PRIMARY KEY (feedback_id),
+    CONSTRAINT fk_fb_student
+        FOREIGN KEY (student_id) REFERENCES students(student_id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

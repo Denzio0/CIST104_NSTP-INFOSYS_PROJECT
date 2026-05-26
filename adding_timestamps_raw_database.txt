@@ -1,0 +1,16 @@
+ALTER TABLE attendance
+    ADD COLUMN created_at DATETIME NOT NULL DEFAULT current_timestamp() AFTER logged_by;
+ 
+ALTER TABLE engagement
+    ADD COLUMN created_at DATETIME NOT NULL DEFAULT current_timestamp() AFTER verified;
+ 
+ALTER TABLE performance
+    ADD COLUMN created_at DATETIME NOT NULL DEFAULT current_timestamp() AFTER officer_name;
+ 
+ALTER TABLE students
+    ADD COLUMN updated_at DATETIME NULL ON UPDATE current_timestamp() AFTER created_at;
+ 
+DESCRIBE attendance;
+DESCRIBE engagement;
+DESCRIBE performance;
+DESCRIBE students;

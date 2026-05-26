@@ -1,0 +1,9 @@
+INSERT INTO users (username, password_hash, role, student_id, is_active)
+VALUES (
+    'admin',
+    SHA2('Admin@NSTP2026', 256),
+    'Admin',
+    NULL,
+    1
+);
+

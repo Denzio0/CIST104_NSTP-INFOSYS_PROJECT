@@ -1,0 +1,43 @@
+DELIMITER $$
+
+CREATE TRIGGER trg_attendance_date
+BEFORE INSERT ON attendance
+FOR EACH ROW
+BEGIN
+    IF NEW.session_date > CURDATE() THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Invalid future date';
+    END IF;
+END $$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE TRIGGER trg_performance_date
+BEFORE INSERT ON performance
+FOR EACH ROW
+BEGIN
+    IF NEW.drill_date > CURDATE() THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Invalid future date';
+    END IF;
+END $$
+
+DELIMITER ;
+
+
+DELIMITER $$
+
+CREATE TRIGGER trg_points_date
+BEFORE INSERT ON points
+FOR EACH ROW
+BEGIN
+    IF NEW.transaction_date > CURDATE() THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Invalid future date';
+    END IF;
+END $$
+
+DELIMITER ;

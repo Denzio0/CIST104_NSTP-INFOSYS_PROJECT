@@ -1,0 +1,10 @@
+ALTER TABLE students
+    ADD COLUMN is_deleted TINYINT(1) NOT NULL DEFAULT 0 AFTER updated_at;
+ 
+ALTER TABLE users
+    ADD COLUMN is_deleted TINYINT(1) NOT NULL DEFAULT 0 AFTER last_login;
+ 
+ALTER TABLE attendance
+    ADD COLUMN is_deleted TINYINT(1) NOT NULL DEFAULT 0 AFTER created_at;
+ 
+
